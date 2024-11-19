@@ -2,6 +2,7 @@
   "name": "backend-vangtech",
   "version": "1.0.0",
   "description": "backedn vangtech",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
