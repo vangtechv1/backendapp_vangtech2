@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
     const logMessage = `Welcome message sent to ${req.ip}.`;
     res.send({
         message: "VANGTECH Telkom University",
-        author: "https://github.com/typicalsleepingboy",
+        author: "https://github.com/vangtechv1",
     });
 });
 
