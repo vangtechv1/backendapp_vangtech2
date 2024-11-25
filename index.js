@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 connectDB();
 app.use(cors());
-app.use(bodyParser.json());
+
 
 app.get("/", (req, res) => {
     res.send({
