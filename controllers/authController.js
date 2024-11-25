@@ -28,15 +28,17 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) => {
     try {
         const { email, password } = req.body;
+        
         const user = await User.findOne({ email, password });
 
         if (!user) {
-            return res.status(400).json({ error: 'kesalahan password' });
+            return res.status(400).json({ error: 'Invalid credentials' });
         }
 
-        res.json({ message: 'Signin sukses' });
+        res.status(201).json({ message: 'Signin successful', userId: user._id });
     } catch (error) {
-        res.status(500).json({ error: 'Signin gagal silahkan coba lagi'});
+        console.error(error);
+        res.status(500).json({ error: 'Server error. Please try again.' });
     }
 };
 
