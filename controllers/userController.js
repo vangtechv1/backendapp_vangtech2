@@ -17,8 +17,8 @@ exports.getUserProfile = async (req, res) => {
 
 exports.updateUserProfile = async (req, res) => {
   try {
-    const { email, newEmail } = req.body;
-    
+    const { email, newEmail, name } = req.body;
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -26,6 +26,10 @@ exports.updateUserProfile = async (req, res) => {
 
     if (newEmail) {
       user.email = newEmail;
+    }
+
+    if (name) {
+      user.name = name;
     }
 
     await user.save();
