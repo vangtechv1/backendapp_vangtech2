@@ -8,7 +8,6 @@ const cors = require('cors');
 const app = express();
 connectDB();
 app.use(express.json());
-const cors = require('cors');
 app.use(cors({ origin: '*' }));
 
 app.get("/", (req, res) => {
