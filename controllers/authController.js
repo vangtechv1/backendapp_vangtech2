@@ -23,17 +23,22 @@ exports.signin = async (req, res) => {
     try {
         console.log('Request body:', req.body);
         const { email, password } = req.body;
-        const user = await User.findOne({ email, password });
+        const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({ error: 'kesalahan password' });
+            return res.status(400).json({ error: 'Email tidak ditemukan' });
+        }
+        if (user.password !== password) {
+            return res.status(400).json({ error: 'Password salah' });
         }
 
-        res.json({ message: 'Signin sukses' });
+        res.status(201).json({ message: 'Signin sukses' });
     } catch (error) {
-        res.status(500).json({ error: 'Signin gagal silahkan coba lagi'});
+        console.error('Error during signin:', error);
+        res.status(500).json({ error: 'Signin gagal. Silahkan coba lagi.' });
     }
 };
+
 
 exports.forgotPassword = async (req, res) => {
     try {
