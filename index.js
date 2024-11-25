@@ -10,11 +10,23 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-    origin: ['https://backendapp-vangtech2.vercel.app', 'http://localhost:3000'],
+    origin: function(origin, callback){
+        if(!origin) return callback(null, true);
+        
+        const allowedOrigins = [
+            'https://backendapp-vangtech2.vercel.app', 
+            'http://localhost:3000'
+        ];
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 
 app.get("/", (req, res) => {
     res.send({
