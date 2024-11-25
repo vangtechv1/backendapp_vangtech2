@@ -10,9 +10,9 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-    origin: '*', // Allow all origins during development
+    origin: ['https://backendapp-vangtech2.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 
