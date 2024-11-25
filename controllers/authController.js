@@ -2,9 +2,14 @@ const User = require('../models/user');
 
 exports.signup = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const existingUser = await User.findOne({ email });
+        console.log('Request body:', req.body);
 
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Email dan password harus diisi' });
+        }
+
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ error: 'User ini sudah terdaftar' });
         }
@@ -14,9 +19,11 @@ exports.signup = async (req, res) => {
 
         res.status(201).json({ message: 'User ini berhasil terdaftar' });
     } catch (error) {
+        console.error('Error during signup:', error);
         res.status(500).json({ error: 'Signup gagal silahkan coba lagi ' });
     }
 };
+
 
 exports.signin = async (req, res) => {
     try {

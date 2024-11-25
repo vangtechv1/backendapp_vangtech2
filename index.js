@@ -2,15 +2,21 @@ const express = require('express');
 const connectDB = require('./config/database');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const cors = require('cors');
 
 
 const app = express();
 connectDB();
 app.use(express.json());
 
+app.use(cors({
+    origin: '*', // Allow all origins during development
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 
 app.get("/", (req, res) => {
-    const logMessage = `Welcome message sent to ${req.ip}.`;
     res.send({
         message: "VANGTECH Telkom University",
         author: "https://github.com/vangtechv1",
