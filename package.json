@@ -1,7 +1,7 @@
 {
-  "name": "backend-vangtech",
+  "name": "backend-apiwasteapp",
   "version": "1.0.0",
-  "description": "backedn vangtech",
+  "description": "backedn apiwasteapp",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
